@@ -1,0 +1,43 @@
+{
+  "variables": {
+    "client_id": "{{env `TF_VAR_clientid`}}",
+    "client_secret": "{{env `TF_VAR_clientsecret`}}",
+    "tenant_id": "{{env `TF_VAR_tenant_id`}}",
+    "subscription_id": "{{env `TF_VAR_subscription_id`}}"
+  },
+
+  "builders": [{
+    "type": "azure-arm",
+    "client_id": "{{user `client_id`}}",
+    "client_secret": "{{user `client_secret`}}",
+    "tenant_id": "{{user `tenant_id`}}",
+    "subscription_id": "{{user `subscription_id`}}",
+
+    "managed_image_resource_group_name": "Azuredevops",
+    "managed_image_name": "myPackerVMImage",
+    "build_resource_group_name": "Azuredevops",
+
+    "os_type": "Linux",
+    "image_publisher": "Canonical",
+    "image_offer": "ubuntuServer",
+    "image_sku": "18.04-LTS",
+    "vm_size": "Standard_DS1_v2",
+
+    "azure_tags": {
+      "created_by": "dev-packer"
+    }    
+  }],
+  
+  "provisioners": [{
+    "inline": [
+        "apt-get update",
+        "apt-get upgrade -y",
+        "apt-get install nginx -y",
+        "echo 'Hello World!' > index.html",
+        "nohup busybox httpd -f -p 80 &"
+    ],
+    "inline_shebang": "/bin/sh -x",
+    "type": "shell",
+    "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} sudo -E sh '{{ .Path }}'"
+  }]
+}
