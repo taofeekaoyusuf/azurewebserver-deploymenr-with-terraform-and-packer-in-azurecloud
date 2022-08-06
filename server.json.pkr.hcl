@@ -17,22 +17,22 @@
 # https://www.packer.io/docs/templates/hcl_templates/variables#type-constraints for more info.
 variable "client_id" {
   type    = string
-  default = "c4b0c97f-5e23-4048-b74e-35421f32026d"
+  default = "99af9746-7158-463e-861e-036c0de15b9b"
 }
 
 variable "client_secret" {
   type    = string
-  default = "fkq8Q~Yv_rtPJ3W2G7mkUJDoEZoKdpJhtXvn_bEY"
+  default = "TLe8Q~D8W-cYipSp~TZJ7J3MH4UVGYBiIyk2AcqL"
 }
 
 variable "subscription_id" {
   type    = string
-  default = "dac919d0-841b-48ab-84a5-d1735c6aeeeb"
+  default = "0173e877-ea67-406c-b540-ed9828abafea"
 }
 
 variable "tenant_id" {
   type    = string
-  default = "${env("TF_VAR_tenant_id")}"
+  default = "f958e84a-92b8-439f-a62d-4f45996b6d07"
 }
 
 # source blocks are generated from your builders; a source can be referenced in
