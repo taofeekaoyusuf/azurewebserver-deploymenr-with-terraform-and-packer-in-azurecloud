@@ -1,16 +1,16 @@
-locals { 
-nsgrules = {
-  
+locals {
+  nsgrules = {
+
     rdp = {
-      name                        = "DenyVNetInboundFromInternet"
-      priority                    = 101
-      direction                   = "Inbound"
-      access                      = "Deny"
-      protocol                    = "*"
-      source_port_range           = "*"
-      destination_port_range      = "*"
-      source_address_prefix       = "Internet"
-      destination_address_prefix  = "VirtualNetwork"
+      name                       = "DenyVNetInboundFromInternet"
+      priority                   = 101
+      direction                  = "Inbound"
+      access                     = "Deny"
+      protocol                   = "*"
+      source_port_range          = "*"
+      destination_port_range     = "*"
+      source_address_prefix      = "Internet"
+      destination_address_prefix = "VirtualNetwork"
     }
 
     sql = {

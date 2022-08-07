@@ -1,4 +1,3 @@
-
 output "name" {
   value = data.azurerm_resource_group.hack-rg.name
 }
@@ -26,3 +25,4 @@ output "vm_fqdn" {
 output "vms_rdp_access" {
   value = formatlist("RDP_URL=%v:%v", data.azurerm_public_ip.hack-pub-ip-data.fqdn, azurerm_lb_nat_rule.hack-natrule.*.frontend_port)
 }
+

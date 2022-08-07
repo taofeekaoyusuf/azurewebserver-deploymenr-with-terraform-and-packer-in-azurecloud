@@ -17,8 +17,8 @@ data "azurerm_resource_group" "hack-rg" {
 }
 
 # Locate the existing custom image
-data "azurerm_image" "main" {
-  name                = "myPackerVMImage"
+data "azurerm_image" "packer-vm-image" {
+  name                = var.packer-vm-image
   resource_group_name = var.hack-rg
 }
 
@@ -74,7 +74,7 @@ resource "azurerm_network_security_group" "hack-nsg" {
 }
 
 resource "azurerm_network_security_rule" "hack-nsr-dev-rules" {
-  for_each                    = locals.nsgrules 
+  for_each                    = local.nsgrules
   name                        = each.key
   direction                   = each.value.direction
   access                      = each.value.access
@@ -153,6 +153,7 @@ resource "azurerm_linux_virtual_machine" "hack-vm" {
   admin_username        = var.username
   admin_password        = var.password
   network_interface_ids = ["${element(azurerm_network_interface.hack-nic.*.id, count.index)}"]
+  source_image_id       = data.azurerm_image.packer-vm-image.id
   count                 = var.count_on
   admin_ssh_key {
     username   = "hackuser"
@@ -162,14 +163,14 @@ resource "azurerm_linux_virtual_machine" "hack-vm" {
     name                 = "osdisk-${count.index}"
     caching              = "ReadWrite"
     storage_account_type = "Standard_LRS"
-    # create_option        = "FromImage"
+    # create_option      = "FromImage"
   }
-  source_image_reference {
-    publisher = var.image_publisher
-    offer     = var.image_offer
-    sku       = var.image_sku
-    version   = var.image_version
-  }
+  # source_image_reference {
+  #   publisher = var.image_publisher
+  #   offer     = var.image_offer
+  #   sku       = var.image_sku
+  #   version   = var.image_version
+  # }
   tags = {
     environment = "dev"
   }

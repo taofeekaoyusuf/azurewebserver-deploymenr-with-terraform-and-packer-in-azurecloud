@@ -21,13 +21,15 @@ sleep 2
 # sleep 5
 # az login
 # sleep 5
-# az account set --subscription="0173e877-ea67-406c-b540-ed9828abafea"
+# az account set --subscription="#specify_subscription_id"
 # sleep 5
-# az ad sp create-for-rbac -n "hackApp" --role Contributor --scopes /subscriptions/0173e877-ea67-406c-b540-ed9828abafea/resourceGroups/Azuredevops
+# az ad sp create-for-rbac -n "hackApp" --role Contributor --scopes /subscriptions/#specify_subscription_id/resourceGroups/Azuredevops
 # sleep 5
-# az login --service-principal -u 088dc326-83cd-407e-942e-4e6dedc99c12 -p -x28Q~hHXplHrV2umY6_T6H5VBOADSb.UsmXycFv --tenant f958e84a-92b8-439f-a62d-4f45996b6d07
+# az login --service-principal -u #specify_client_id -p #specify_client_secret --tenant #specify_tenant_id
 # echo "\n***### End of Login to Microsoft Azure Cloud Platform ###***"
 # sleep 5
+
+
 
 ### === AZURE VM CREATION FROM CLI === ###
 
@@ -37,6 +39,10 @@ sleep 2
 # az vm create --resource-group #specify-rg-name --name #specify-VM-name --image #specify-VM-type --generate-ssh-keys --output json --verbose
 # echo "\n*** End of Virtual Machine Creation on Azure Cloud Platform ***"
 # sleep 5
+
+
+
+### === POLICY DEFINITION AND ASSIGNMENT === ###
 
 echo "\n***### Policy Definition on Azure Cloud Platform ###***"
 sleep 2
@@ -99,6 +105,7 @@ echo "\n***### End of Packer Image Building ###***\n"
 sleep 5
 
 
+
 ### === SSH KEY GENERATION === ###
 
 echo "\n***### SSH Key Generation ###***\n"
@@ -109,6 +116,7 @@ sleep 2
 ssh-keygen -t rsa -b 4096 -f id_rsa
 echo "\n***### End of SSH Key Generation ###***\n"
 sleep 5
+
 
 
 ### === TERRAFORM === ###
@@ -154,11 +162,3 @@ sleep 2
 terraform state list
 sleep 5
 echo "\n***### End of Azure Resource State Listing ###***\n"
-
-
-
-
-
-
-
-
