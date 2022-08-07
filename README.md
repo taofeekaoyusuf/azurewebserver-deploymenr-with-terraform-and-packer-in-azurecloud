@@ -41,7 +41,7 @@ To have further insight on how the Packer and Terraform commands were initiated,
 
 **That's all in a nutshell, Enjoy!!!**
 
-### Outputs
+### Outputs:
 
 - **main.tf**
 - **variables.tf**
