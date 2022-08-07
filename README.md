@@ -1,6 +1,6 @@
-# Azure Infrastructure Operations Project: Deploying a scalable IaaS web server in Azure. \
+# Azure Infrastructure Operations Project: Deploying a scalable IaaS web server in Azure. 
 
-![alt text](https://github.com/taofeekaoyusuf/azurewebserver-deploymenr-with-terraform-and-packer-in-azurecloud/blob/main/project1_image.png?style="centerme") \
+![alt text](https://github.com/taofeekaoyusuf/azurewebserver-deploymenr-with-terraform-and-packer-in-azurecloud/blob/main/project1_image.png?style=centerme) 
 
 img[src$="centerme"] {
   display:block;
